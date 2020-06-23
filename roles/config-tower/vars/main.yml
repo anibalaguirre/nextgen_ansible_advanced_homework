@@ -1,11 +1,13 @@
 ---
 # vars file for roles/config-tower
 org_name: Default 
+scm_type: git 
 scm_branch: master 
 scm_url: "{{ github_repo }}"
 proj_name: "00_Homework Assignment"
 user_name: admin 
 password: r3dh4t1!
+tower_verify_ssl: no
 ssh_cred_name: "Connect_to_workstation"
 user_cred_name: "cloud-user"
 user_cred_path: "/root/.ssh/openstack.pem"

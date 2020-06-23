@@ -1,17 +1,26 @@
 - name: Create Homework Assignment project
-
+  tower_project:
+    name: "{{ proj_name }}"
+    organization: "{{ org_name }}"
+    scm_type: "{{ scm_type }}"
+    scm_url: "{{ scm_url }}"
+    scm_branch: "{{ scm_branch }}"
+    tower_username: "{{ user_name }}"
+    tower_password: "{{ password }}"
+    tower_host: tower1.{{ tower_GUID }}.example.opentlc.com
+    tower_verify_ssl: "{{ tower_verify_ssl }}"
 
 - name: Machine Credentail to connect to workstation using openstack.pub
   tower_credential:
-    name: Connect_to_workstation
-    organization: Default
+    name: "{{ ssh_cred_name }}"
+    organization: "{{ org_name }}"
     state: present
     kind: ssh
     tower_host: tower1.{{tower_GUID}}.example.opentlc.com
-    tower_username: admin
-    tower_password: r3dh4t1!
-    ssh_key_data: "/root/.ssh/openstack.pem"
-    username: cloud-user
+    tower_username: "{{ user_name }}"
+    tower_password: "{{ password }}"
+    ssh_key_data: "{{ user_cred_path }}"
+    username: "{{ user_cred_name }}"
 
 - name: Create Inventory
   command: |
@@ -29,9 +38,9 @@
     inventory: "{{static_inventory_name}}"
     state: present
     tower_host: tower1.{{tower_GUID}}.example.opentlc.com
-    tower_username: admin
-    tower_password: r3dh4t1!
-    tower_verify_ssl: no
+    tower_username: "{{ user_name }}"
+    tower_password: "{{ password }}"
+    tower_verify_ssl: "{{ tower_verify_ssl }}"
 
 - name: Associate workstation host to group 
   command: | 
@@ -41,13 +50,13 @@
 - name: Tower Creds key file
   tower_credential:
     name: "{{ opentlc_cred_name }}"
-    organization: Default
+    organization: "{{ org_name }}"
     state: present
     kind: ssh
     tower_host: tower1.{{tower_GUID}}.example.opentlc.com
-    tower_username: admin
-    tower_password: r3dh4t1!
-    tower_verify_ssl: no
+    tower_username: "{{ user_name }}"
+    tower_password: "{{ password }}"
+    tower_verify_ssl: "{{ tower_verify_ssl }}"
     ssh_key_data: /root/.ssh/mykey.pem
     username: "{{ opentlc_login }}"
 
