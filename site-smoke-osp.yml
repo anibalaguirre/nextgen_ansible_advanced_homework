@@ -19,6 +19,9 @@
     with_items:
       - "{{ openstack_info.openstack_servers }}"
     register: webpage
+  
+  - name: Debug webpage content
+    debug: "{{ webpage.results[0].content }}"
 
   - name: Fail if 'Ansible has done its job' is not in the page content
     fail:
