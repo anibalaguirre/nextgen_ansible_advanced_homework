@@ -1,7 +1,7 @@
 - hosts: workstation
   gather_facts: false
   tasks:
- - name: OpenStack servers
+  - name: OpenStack servers
     os_server_info:
       cloud: openstack
       server: 'frontend'

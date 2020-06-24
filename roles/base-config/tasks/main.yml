@@ -19,6 +19,6 @@
     name: "{{ item }}" 
     state: latest
   with_items:
-#    - httpie
+    - httpie
     - python-pip
 
