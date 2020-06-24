@@ -9,6 +9,9 @@
     tags:
     - osp.smoke
 
+  - name: Debug frontend openstack info
+    debug: "{{ openstack_info }}"
+
   - name: Curl website
     uri:
       url: "http://{{ item.public_v4 }}"
