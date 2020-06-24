@@ -9,8 +9,8 @@
     tags:
     - osp.smoke
 
-  - name: Debug frontend openstack info
-    debug: "{{ openstack_info }}"
+  - debug: 
+      var: openstack_info.openstack_servers[0].public_v4
 
   - name: Curl website
     uri:
@@ -23,8 +23,8 @@
       - "{{ openstack_info.openstack_servers }}"
     register: webpage
   
-  - name: Debug webpage content
-    debug: "{{ webpage.results[0].content }}"
+  - debug: 
+      var: webpage.results[0].content
 
   - name: Fail if 'Ansible has done its job' is not in the page content
     fail:
