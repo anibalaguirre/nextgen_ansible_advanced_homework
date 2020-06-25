@@ -1,30 +1,30 @@
 ---
-- name: ensure {{ payload }} is at the lastest level
+- name: Ensure {{ payload }} is at the lastest level
   yum:
     name: "{{ payload }}"
     state: latest
 
-- name: ensure {{ payload }} is enabled at boot
+- name: Ensure {{ payload }} is enabled at boot
   service:
     name: "{{ payload }}"
     enabled: yes
 
-- name: create {{ payload }} default web directory
+- name: Create {{ payload }} default web directory
   file:
     path: "{{ tomcat_web_root }}"
     state: directory
   notify:
-    - restart {{ payload }}
+    - Restart {{ payload }}
 
-- name: copy static index.html to {{ payload }} webroot
+- name: Copy static index.html to {{ payload }} webroot
   template:
     src: index.html.j2
     dest: "{{ tomcat_web_root }}/index.html"
     mode: 0644
   notify:
-    - restart {{ payload }}
+    - Restart {{ payload }}
 
-- name: ensure {{ payload }} is running
+- name: Ensure {{ payload }} is running
   service:
     name: "{{ payload }}"
     state: started
