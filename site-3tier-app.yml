@@ -30,5 +30,5 @@
   hosts: appdbs
   roles:
     - {name: base-config, tags: base-config}
-    - {name: ansible-role-postgresql, tags: [dbs, postgres]}
+    - {name: geerlingguy.postgresql, tags: [dbs, postgres]}
 
