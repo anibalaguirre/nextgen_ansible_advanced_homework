@@ -1,1 +1,2 @@
 payload: haproxy
+haproxy_conf_dir: /etc/haproxy

@@ -30,30 +30,7 @@
     network: ext_network
     wait: true
     timeout: 200
-  with_dict: "{{osp_servers}}"
+  with_dict: "{{ osp_servers }}"
   tags:
     - test.servers
-   
-#- name: OpenStack servers
-#  os_server_facts:
-#    cloud: "{{ cloud_name }}"
-#  register: result
-#  tags:
-#    - test.servers
-
-#- debug: 
-#    msg: "Debug result {{ result }}"
-
-#- name: Wait for server to be available
-#  when: result.ansible_facts.openstack_servers is defined
-#  wait_for:
-#    host: "{{ item.public_v4 }}"
-#    port: 22
-#    search_regex: OpenSSH
-#    timeout: 600
-#  delegate_to: "{{ inventory_hostname }}"
-#  with_items: 
-#    - "{{ result.ansible_facts.openstack_servers }}"
-#  tags:
-#    - test.servers
 
