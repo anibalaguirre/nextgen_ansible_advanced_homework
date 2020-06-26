@@ -1,4 +1,4 @@
-- name: Update Prod Job template
+- name: Update Prod Job templates
   tower_job_template:
     name: "{{ item.value.name }}"
     credential: "{{ credential }}"
@@ -6,8 +6,8 @@
     tower_username: "{{ tower_username }}"
     tower_password: "{{ tower_password }}"
     tower_verify_ssl: "{{ tower_verify_ssl }}"
-    state: present
-    job_type: run
+    state: "{{ item.value.state }}"
+    job_type: "{{ item.value.job_type }}"
     playbook: "{{ item.value.playbook }}"
     project: "{{ proj_name }}"
   with_dict: "{{ templates }}"
